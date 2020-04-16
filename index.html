@@ -39,19 +39,54 @@
             //embedded_svc.settings.prepopulatedPrechatFields = {}; //Establece la cumplimentación automática de los campos del formulario previo al chat
             //embedded_svc.settings.fallbackRouting = []; //Una matriz de identificadores de botones, de usuario o userId_buttonId
             //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Toma como valor predeterminado la opción Contacto)
-           embedded_svc.settings.extraPrechatInfo = [
-              {
-               "entityName": "Account",
-               "showOnCreate": true,
-               "saveToTranscript": "AccountId",
-               "entityFieldMaps": [{
-                  "isExactMatch": true,
-                  "fieldName": "Numero_de_documento__c",
-                  "doCreate": false,
-                  "doFind": true,
-                  "label": "DNI"
-               }]
-            }];
+          embedded_svc.settings.extraPrechatFormDetails = [{
+                  //Valor para setear en el Caso
+                  "label": "Origin",
+                  "value": "Chat",
+                  "displayToAgent": true
+               },{
+                  /*Valor para buscar Contacto y 
+                  relacionarlo al chat*/
+                  "label":"DNI", 
+                  "transcriptFields":["Numero_de_documento__c"]
+               }
+            ];
+
+            embedded_svc.settings.extraPrechatInfo = [
+               //Se setea para que no cree un nuevo Contacto
+               {
+                  "entityName": "Account",
+                  "showOnCreate": true,
+                  "saveToTranscript": "AccountId",
+                  "entityFieldMaps": [{
+                     "isExactMatch": true,
+                     "fieldName": "Numero_de_documento__c",
+                     "doCreate": false,
+                     "doFind": false,
+                     "label": "First Name"
+                  }]
+               },
+               /*Se setea para que cree un nuevo Caso
+               con el Origen y la Empresa cargados*/
+               {
+                  "entityName": "Case",
+                  "showOnCreate": true,
+                  "saveToTranscript": "CaseId",
+                  "entityFieldMaps": [{
+                     "isExactMatch": false,
+                     "fieldName": "Subject",
+                     "doCreate": true,
+                     "doFind": false,
+                     "label": "Subject"
+                  }, {
+                     "isExactMatch": false,
+                     "fieldName": "Origin",
+                     "doCreate": true,
+                     "doFind": false,
+                     "label": "Origin"
+                  }]
+               }
+            ];
             embedded_svc.settings.enabledFeatures = ['LiveAgent'];
             embedded_svc.settings.entryFeature = 'LiveAgent';
 
