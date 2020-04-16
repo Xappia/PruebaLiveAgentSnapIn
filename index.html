@@ -41,25 +41,38 @@
             //embedded_svc.settings.fallbackRouting = []; //Una matriz de identificadores de botones, de usuario o userId_buttonId
             //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Toma como valor predeterminado la opción Contacto)
             embedded_svc.settings.extraPrechatFormDetails = [{
+	  			//Valor para setear en el Caso
+				"label": "Status",
+	  			"value": "Generada",
+	  			"displayToAgent": true
+			}, {
 				//Valor para setear en el Caso
-               "label": "Origin",
-               "value": "Chat",
-               "displayToAgent": true
-            }];
-	    embedded_svc.settings.extraPrechatInfo = [{
-		    "entityName":"Account",
-		    "showOnCreate":true,
-		    "linkToEntityName":"Case",
-		    "linkToEntityField":"AccountId",
-		    "saveToTranscript":"AccountId",
-		    "entityFieldMaps": [{
-			"isExactMatch":true,
-			"fieldName":"Numero_de_documento__c",
-			"doCreate":false,
-			"doFind":true,
-			"label":"DNI_liveagent__c "
-		    }]
-		}];
+				"label": "Origin",
+				"value": "Chat",
+				"displayToAgent": true
+			}
+		];
+	    embedded_svc.settings.extraPrechatInfo = [
+			//Se setea para que no cree un nuevo Contacto
+			{
+				"entityName": "Case",
+				"showOnCreate": true,
+				"saveToTranscript": "CaseId",
+				"entityFieldMaps": [{
+					"isExactMatch": false,
+					"fieldName": "Status",
+					"doCreate": true,
+					"doFind": false,
+					"label": "Status"
+				},{
+					"isExactMatch": false,
+					"fieldName": "Origin",
+					"doCreate": true,
+					"doFind": false,
+					"label": "Origin"
+				} ]
+			}
+		];
             embedded_svc.settings.enabledFeatures = ['LiveAgent'];
             embedded_svc.settings.entryFeature = 'LiveAgent';
 
