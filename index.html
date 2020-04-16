@@ -1,21 +1,19 @@
 <html>
 
 <head>
-    <style type='text/css'>
-        .embeddedServiceHelpButton .helpButton .uiButton {
-            background-color: #06BF88;
-            font-family: "Salesforce Sans", sans-serif;
-        }
-
-        .embeddedServiceHelpButton .helpButton .uiButton:focus {
-            outline: 1px solid #06BF88;
-        }
-
-        @font-face {
-            font-family: 'Salesforce Sans';
-            src: url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.woff') format('woff'),
-                url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.ttf') format('truetype');
-        }
+   <style type='text/css'>
+    .embeddedServiceHelpButton .helpButton .uiButton {
+        background-color: #06BF88;
+        font-family: "Salesforce Sans", sans-serif;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 1px solid #06BF88;
+    }
+    @font-face {
+        font-family: 'Salesforce Sans';
+        src: url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.woff') format('woff'),
+        url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.ttf') format('truetype');
+    }
     </style>
 </head>
 
@@ -23,7 +21,7 @@
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 
     <script type='text/javascript'>
-        var initESW = function (gslbBaseURL) {
+        var initESW = function(gslbBaseURL) {
             embedded_svc.settings.displayHelpButton = true; //O falso
             embedded_svc.settings.language = ''; //Por ejemplo, introduzca 'en' o 'en-US'
 
@@ -65,7 +63,7 @@
         if (!window.embedded_svc) {
             var s = document.createElement('script');
             s.setAttribute('src', 'https://acasalud--dev.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-            s.onload = function () {
+            s.onload = function() {
                 initESW(null);
             };
             document.body.appendChild(s);
