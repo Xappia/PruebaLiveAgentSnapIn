@@ -18,7 +18,7 @@
 </head>
 
 <body>
-   v1
+   v2
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 
     <script type='text/javascript'>
@@ -54,19 +54,6 @@
             ];
 
             embedded_svc.settings.extraPrechatInfo = [
-               //Se setea para que no cree un nuevo Contacto
-               {
-                  "entityName": "Account",
-                  "showOnCreate": true,
-                  "saveToTranscript": "AccountId",
-                  "entityFieldMaps": [{
-                     "isExactMatch": true,
-                     "fieldName": "Numero_de_documento__c",
-                     "doCreate": false,
-                     "doFind": false,
-                     "label": "First Name"
-                  }]
-               },
                /*Se setea para que cree un nuevo Caso
                con el Origen y la Empresa cargados*/
                {
